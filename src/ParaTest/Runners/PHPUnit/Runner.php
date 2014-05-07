@@ -197,7 +197,7 @@ class Runner
             $token = $this->getNextAvailableToken();
             if ($token !== false) {
                 $this->acquireToken($token);
-                $env = array('TEST_TOKEN' => $token) + Habitat::getAll();
+                $env = array('TEST_TOKEN' => getenv('TEST_TOKEN').$token) + Habitat::getAll();
                 $this->running[$token] = array_shift($this->pending)->run($opts->phpunit, $opts->filtered, $env);
             }
         }
